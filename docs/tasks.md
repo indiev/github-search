@@ -1,7 +1,7 @@
 ### Phase 1: 개발 환경 및 아키텍처 수립
 
-1. [ ] **프로젝트 워크스페이스 구성**: Turborepo, pnpm, Next.js 16+, TypeScript 환경 초기화
-2. [ ] **개발 컨벤션 설정**: ESLint, Prettier 및 공통 tsconfig 구성
+1. [x] **프로젝트 워크스페이스 구성**: Turborepo, pnpm, Next.js 16+, TypeScript 환경 초기화
+2. [x] **개발 컨벤션 설정**: ESLint, Prettier 및 공통 tsconfig 구성
 3. [ ] **UI 라이브러리 통합**: Tailwind CSS + MUI 연동, 다크모드 및 폰트(Apple System > Noto) 설정
    - 참조: [MUI Tailwind CSS Integration](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/)
 4. [ ] **아키텍처 설계**: Clean Architecture 기반 디렉토리 구조 구성
