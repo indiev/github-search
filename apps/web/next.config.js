@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  reactCompiler: true,
+  cacheComponents: true,
+};
 
 export default nextConfig;
