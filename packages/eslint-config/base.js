@@ -14,6 +14,11 @@ export const config = [
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
   {
+    languageOptions: {
+      ecmaVersion: 2023,
+    },
+  },
+  {
     plugins: {
       turbo: turboPlugin,
     },
