@@ -3,5 +3,7 @@
     { "pattern": "./apps/*" },
     { "pattern": "./packages/*" },
     { "pattern": "./" }
-  ]
+  ],
+  "tailwindCSS.experimental.classRegex": [["className\\s*:\\s*['\"]([^'\"]*)['\"]"]],
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^@mui/[^/]+$"]
 }
