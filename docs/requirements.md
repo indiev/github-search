@@ -28,6 +28,7 @@ https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-users
 - 페이징 처리: SSR 로 첫페이지 선 랜더링, 이후 CSR 로 무한 스크롤
 - 사용자 아바타 이미지 처리: HTML5 Canvas + WebAssembly 를 통해 랜더링
 - Jest 를 통한 유닛 테스트 지원
+- Cypress 를 통한 Component 테스트 지원 (주요 UI 컴포넌트)
 - Cypress 를 통한 E2E 테스트 지원
 - 모든 GitHub 호출은 서버 라우트에서 Authorization: token 사용
 - 레이트리밋 초과 시 재시도, 남은 쿼터 노출
