@@ -6,8 +6,10 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["@testing-library/jest-dom", "cypress"]
   },
-  "include": ["src"],
+  "types": ["@testing-library/jest-dom"],
+  "include": ["src", "cypress/support/component.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
