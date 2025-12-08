@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
-    "check-types": "next typegen && tsc --noEmit"
+    "check-types": "next typegen && tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci",
+    "test:component": "cypress run --component"
   },
   "dependencies": {
     "@repo/store": "workspace:*",
@@ -19,14 +23,22 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/jest-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.17",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "axe-core": "^4.11.0",
     "babel-plugin-react-compiler": "^1.0.0",
+    "cypress": "^15.7.1",
     "eslint": "^9.39.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "tailwindcss": "^4.1.17",
     "typescript": "5.9.2"
   }
