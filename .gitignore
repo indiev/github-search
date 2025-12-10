@@ -46,3 +46,4 @@ logs-*.json
 debug_curl.html
 cypress/logs/
 
+apps/e2e/cypress/logs-*
