@@ -129,11 +129,7 @@ export default function InfiniteUserList({
 
         if (uniqueUsers.length > 0) {
           const userNodes = uniqueUsers.map((user) => (
-            <UserCard
-              key={user.login}
-              user={user}
-              className="mx-auto w-full max-w-[360px]"
-            />
+            <UserCard key={user.login} user={user} className="mx-auto w-full" />
           ));
           setUsers((prev) => [...prev, ...userNodes]);
         }

@@ -73,11 +73,7 @@ export default async function Page({
   }
 
   const initialUserNodes = initialUsersData.users.map((user) => (
-    <UserCard
-      key={user.login}
-      user={user}
-      className="mx-auto w-full max-w-[360px]"
-    />
+    <UserCard key={user.login} user={user} className="mx-auto w-full" />
   ));
 
   return (

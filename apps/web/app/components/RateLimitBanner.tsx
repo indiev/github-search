@@ -11,6 +11,7 @@ import {
 } from "@repo/store";
 import Alert from "@repo/ui/primitives/Alert";
 import Button from "@repo/ui/primitives/Button";
+import Snackbar from "@repo/ui/primitives/Snackbar";
 
 interface RateLimitBannerProps {
   onManualRetry: () => void;
@@ -47,9 +48,6 @@ export default function RateLimitBanner({
     return () => clearInterval(id);
   }, [rate.pendingRetryAt]);
 
-  // Only show if we are actually limited or have a pending retry
-  if (!rate.isLimited && !rate.pendingRetryAt) return null;
-
   const diffSec = remainingSeconds;
 
   const countdownText =
@@ -76,32 +74,45 @@ export default function RateLimitBanner({
     ? "짧은 시간 내 너무 많은 요청이 발생하여 잠시 대기합니다."
     : `쿼터는 ${new Date(rate.resetAt || "").toLocaleTimeString()}에 초기화됩니다.`;
 
+  const isOpen = isQuotaExhausted || isSecondaryLimit;
+
   return (
-    <Alert severity="error" className="mb-4 flex items-center justify-between">
-      <div className="flex-1">
-        <div className="font-semibold">{title}</div>
-        <div className="text-sm opacity-80">
-          {description}
-          <br />
-          {countdownText} · 남은 쿼터: {rate.remaining ?? 0} /{" "}
-          {rate.limit ?? "?"} (리소스: {rate.resource})
+    <Snackbar
+      open={isOpen}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+    >
+      <Alert severity="error">
+        <div className="flex w-full flex-col items-start justify-between gap-4 md:flex-row md:items-center md:gap-6">
+          <div className="flex-1">
+            <div className="font-semibold">{title}</div>
+            <div className="text-sm opacity-80">
+              {description}
+              <br />
+              {countdownText} · 남은 쿼터: {rate.remaining ?? 0} /{" "}
+              {rate.limit ?? "?"} (리소스: {rate.resource})
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            {diffSec > 0 && (
+              <Button
+                size="small"
+                variant="outlined"
+                onClick={handleCancelRetry}
+              >
+                자동 재시도 취소
+              </Button>
+            )}
+            <Button
+              size="small"
+              variant="contained"
+              disabled={diffSec > 0}
+              onClick={handleManualRetry}
+            >
+              지금 다시 시도
+            </Button>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center gap-2">
-        {diffSec > 0 && (
-          <Button size="small" variant="outlined" onClick={handleCancelRetry}>
-            자동 재시도 취소
-          </Button>
-        )}
-        <Button
-          size="small"
-          variant="contained"
-          disabled={diffSec > 0}
-          onClick={handleManualRetry}
-        >
-          지금 다시 시도
-        </Button>
-      </div>
-    </Alert>
+      </Alert>
+    </Snackbar>
   );
 }
