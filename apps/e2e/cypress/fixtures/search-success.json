@@ -1,0 +1,47 @@
+{
+  "total_count": 35,
+  "users": [
+    {
+      "login": "test-user-1",
+      "type": "User",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/1001?v=4",
+      "url": "https://github.com/test-user-1",
+      "name": "Test User One",
+      "bio": "I am the first test user",
+      "location": "San Francisco, CA",
+      "stats": {
+        "repositories": 10,
+        "followers": 100,
+        "joined": "2020-01-01T12:00:00Z"
+      }
+    },
+    {
+      "login": "test-user-2",
+      "type": "User",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/1002?v=4",
+      "url": "https://github.com/test-user-2",
+      "name": "Test User Two",
+      "bio": "I am the second test user",
+      "location": "New York, NY",
+      "stats": {
+        "repositories": 5,
+        "followers": 50,
+        "joined": "2021-05-20T10:00:00Z"
+      }
+    },
+    {
+      "login": "test-user-3",
+      "type": "User",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/1003?v=4",
+      "url": "https://github.com/test-user-3",
+      "name": "Test User Three",
+      "bio": "I am the third test user",
+      "location": "London, UK",
+      "stats": {
+        "repositories": 20,
+        "followers": 200,
+        "joined": "2019-11-15T08:30:00Z"
+      }
+    }
+  ]
+}

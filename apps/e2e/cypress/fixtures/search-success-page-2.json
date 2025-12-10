@@ -1,0 +1,40 @@
+{
+  "total_count": 35,
+  "users": [
+    {
+      "login": "test-user-4",
+      "type": "User",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/1004?v=4",
+      "url": "https://github.com/test-user-4",
+      "name": "Test User Four",
+      "bio": "I am the fourth test user",
+      "location": "Berlin, DE",
+      "stats": {
+        "repositories": 12,
+        "followers": 40,
+        "joined": "2020-05-01T12:00:00Z"
+      }
+    },
+    {
+      "login": "test-user-5",
+      "type": "User",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/1005?v=4",
+      "url": "https://github.com/test-user-5",
+      "name": "Test User Five",
+      "bio": "I am the fifth test user",
+      "location": "Tokyo, JP",
+      "stats": {
+        "repositories": 8,
+        "followers": 80,
+        "joined": "2021-01-10T09:00:00Z"
+      }
+    }
+  ],
+  "rateLimit": {
+      "limit": 5000,
+      "remaining": 4995,
+      "reset": 1600000000,
+      "used": 5,
+      "isLimited": false
+  }
+}
