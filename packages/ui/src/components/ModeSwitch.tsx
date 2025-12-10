@@ -1,40 +1,50 @@
 "use client";
 import { useColorScheme } from "@mui/material/styles";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 import Box from "../primitives/Box";
-import FormControl from "../primitives/FormControl";
-import InputLabel from "../primitives/InputLabel";
-import MenuItem from "../primitives/MenuItem";
-import Select from "../primitives/Select";
+import Typography from "../primitives/Typography";
 
 export default function ModeSwitch() {
-  const { mode, setMode } = useColorScheme();
+  const colorScheme = useColorScheme();
+  if (!colorScheme) {
+    return null;
+  }
+  const { mode, setMode } = colorScheme;
   if (!mode) {
     return null;
   }
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        mt: 1,
-        p: 1,
-      }}
-    >
-      <FormControl>
-        <InputLabel id="mode-select-label">Theme</InputLabel>
-        <Select
-          labelId="mode-select-label"
-          id="mode-select"
-          value={mode}
-          onChange={(event) => setMode(event.target.value as typeof mode)}
-          label="Theme"
-        >
-          <MenuItem value="system">System</MenuItem>
-          <MenuItem value="light">Light</MenuItem>
-          <MenuItem value="dark">Dark</MenuItem>
-        </Select>
-      </FormControl>
+    <Box className="flex flex-col gap-1 text-right">
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        id="mode-select-label"
+      >
+        Theme
+      </Typography>
+      <ToggleButtonGroup
+        id="mode-select"
+        value={mode}
+        exclusive
+        onChange={(_event, value) => value && setMode(value)}
+        size="small"
+        sx={{
+          borderRadius: 999,
+          backgroundColor: "var(--mui-palette-background-paper)",
+          "& .MuiToggleButton-root": {
+            textTransform: "none",
+            minWidth: 0,
+            paddingInline: 1.5,
+            border: "none",
+          },
+        }}
+      >
+        <ToggleButton value="system">System</ToggleButton>
+        <ToggleButton value="light">Light</ToggleButton>
+        <ToggleButton value="dark">Dark</ToggleButton>
+      </ToggleButtonGroup>
     </Box>
   );
 }

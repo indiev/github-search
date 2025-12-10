@@ -1,3 +1,4 @@
+"use client";
 import MUIButton, { type ButtonProps } from "@mui/material/Button";
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 
