@@ -15,6 +15,8 @@ export default defineConfig({
     },
     defaultCommandTimeout: 8000,
     requestTimeout: 12000,
+    viewportWidth: 1920,
+    viewportHeight: 1080,
     e2e: {
       baseUrl,
       specPattern: ["cypress/e2e/**/*.cy.{ts,tsx}"],

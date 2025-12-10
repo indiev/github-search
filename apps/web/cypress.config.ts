@@ -1,12 +1,12 @@
-import { defineConfig } from "cypress";
+import { createComponentConfig } from "@repo/cypress-config";
 
-export default defineConfig({
+export default createComponentConfig({
   component: {
     devServer: {
       framework: "next",
       bundler: "webpack",
     },
-    supportFile: false,
     specPattern: "**/*.cy.{ts,tsx}",
+    supportFile: "cypress/support/component.tsx",
   },
 });

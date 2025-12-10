@@ -10,7 +10,9 @@
     "HOST",
     "CYPRESS_BASE_URL",
     "E2E_SERVER_MODE",
-    "E2E_SKIP_BUILD"
+    "E2E_SKIP_BUILD",
+    "GITHUB_TOKEN",
+    "MOCK_GITHUB_API"
   ],
   "tasks": {
     "build": {

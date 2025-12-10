@@ -1,13 +1,23 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/avatar-wasm": ["../avatar-wasm/src"]
+    },
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "outDir": "dist",
     "lib": ["es6", "dom"],
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["@testing-library/jest-dom", "cypress"]
+    "types": [
+      "@testing-library/jest-dom",
+      "@testing-library/jest-dom/jest-globals",
+      "cypress"
+    ]
   },
   "types": ["@testing-library/jest-dom"],
   "include": ["src", "cypress/support/component.d.ts"],

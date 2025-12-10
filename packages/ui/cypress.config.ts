@@ -1,6 +1,6 @@
-import { defineConfig } from "cypress";
+import { createComponentConfig } from "@repo/cypress-config";
 
-export default defineConfig({
+export default createComponentConfig({
   component: {
     devServer: {
       framework: "react",
@@ -10,11 +10,13 @@ export default defineConfig({
           alias: {
             "next/font/google":
               "/Users/quester/Project/github-search/packages/ui/cypress/mocks/next-font-google.js",
+            "next/link":
+              "/Users/quester/Project/github-search/packages/ui/cypress/mocks/next-link.tsx",
           },
         },
       },
     },
-    supportFile: false,
     specPattern: "src/**/*.cy.{ts,tsx}",
+    supportFile: "cypress/support/component.tsx",
   },
 });
