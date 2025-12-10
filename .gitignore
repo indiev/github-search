@@ -39,3 +39,10 @@ yarn-error.log*
 .idea
 
 screenshots
+
+# Logs and Debug
+logs-*.json
+*_output.log
+debug_curl.html
+cypress/logs/
+
