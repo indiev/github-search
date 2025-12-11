@@ -46,6 +46,7 @@ MOCK_GITHUB_API=false               # 필요 시 true 로 설정
 ```
 
 > 최소 실행:
+>
 > - 로컬 개발/테스트만 한다면 `.env` 없이도 동작하도록 되어 있으며,
 > - 실제 GitHub API 를 사용해 수동 테스트할 경우 `GITHUB_TOKEN` 설정을 권장합니다.
 
@@ -108,13 +109,13 @@ MOCK_GITHUB_API=false               # 필요 시 true 로 설정
   - `DEFAULT_BASE_URL`, `createE2EConfig`, `createComponentConfig` 등
   - `APP_PORT`, `PORT`, `CYPRESS_BASE_URL` 에 따라 base URL 계산
 
-- `packages/eslint-config` (`@repo/eslint-config`)  
+- `packages/eslint-config` (`@repo/eslint-config`)
   - 공통 ESLint 설정 (Next.js, React, Turborepo, Prettier 연동)
 
-- `packages/jest-config` (`@repo/jest-config`)  
+- `packages/jest-config` (`@repo/jest-config`)
   - 공통 Jest 설정 (Next.js/React/DOM 환경 공유)
 
-- `packages/tailwind-config` (`@repo/tailwind-config`)  
+- `packages/tailwind-config` (`@repo/tailwind-config`)
   - Tailwind CSS 공용 설정
 
 - `packages/testing` (`@repo/testing`)
@@ -283,7 +284,42 @@ pnpm test:e2e      # Next.js 서버 + Cypress E2E
 
 ---
 
-## 7. 과제 요구사항과 매핑 (요약)
+## 7. MUI 와 Tailwind CSS 같이 사용할 때 주의할 점
+
+### 1. CSS Layer 순서 설정
+
+MUI와 Tailwind CSS의 스타일이 충돌하지 않도록 **CSS Layer(@layer)의 순서를 명시적으로 정의**해야 합니다.
+
+- **주의점:** Tailwind의 유틸리티 클래스가 MUI의 기본 스타일을 덮어쓸 수 있도록, `mui` 레이어가 `utilities` 레이어보다 **먼저** 오도록 순서를 지정해야 합니다.
+- **설정 방법:** CSS 파일 최상단에 아래 순서를 반드시 명시하세요.
+  ```css
+  @layer theme, base, mui, components, utilities;
+  @import "tailwindcss";
+  ```
+
+### 2. MUI Provider에서 CSS Layer 활성화
+
+MUI 스타일이 위에서 정의한 `mui` 레이어에 포함되도록 **MUI 설정(Provider)에서 옵션을 켜야 합니다.**
+
+- **Next.js (App Router):** `AppRouterCacheProvider`에 `options={{ enableCssLayer: true }}` 속성을 추가해야 합니다.
+- **Next.js (Pages Router) / Vite:** `createCache`나 `StyledEngineProvider`에서 `enableCssLayer: true` 설정을 해야 하며, `GlobalStyles` 컴포넌트를 통해 레이어 정의를 주입해야 할 수도 있습니다.
+
+### 3. VS Code IntelliSense 설정 (개발 편의성)
+
+Tailwind CSS 공식 확장은 기본적으로 MUI 컴포넌트 내부의 `className`이나 `slotProps`를 인식하지 못할 수 있습니다.
+
+- **주의점:** 자동 완성 기능이 작동하지 않으면 생산성이 떨어지므로 설정을 추가해야 합니다.
+- **해결책:** VS Code의 `settings.json`에 `tailwindCSS.experimental.classRegex` 설정을 추가하여 `className` 패턴을 인식시켜야 합니다.
+
+### 4. 테마 변수 연동 (선택 사항)
+
+MUI의 테마 시스템(색상, 폰트 등)을 Tailwind 클래스(`text-primary` 등)에서 그대로 사용하려면 수동 연결이 필요합니다.
+
+- **방법:** CSS 파일 내 `@theme inline` 블록 등에서 MUI의 CSS 변수(`var(--mui-palette-primary-mainChannel)`)를 Tailwind 변수에 매핑해주어야 일관된 디자인 시스템을 유지할 수 있습니다.
+
+---
+
+## 8. 과제 요구사항과 매핑 (요약)
 
 `docs/requirements.md` 에 명시된 검색/정렬/필터/페이징/다크 모드/테스트 요구사항은 다음과 같이 매핑됩니다.
 
@@ -305,12 +341,10 @@ pnpm test:e2e      # Next.js 서버 + Cypress E2E
 
 ---
 
-## 8. 추가 참고 문서
+## 9. 추가 참고 문서
 
 - 요구사항: `docs/requirements.md`
 - 구현 체크리스트: `docs/implementation_checklist.md`
 - GitHub 사용자 검색 UI 노트: `docs/github-user-search-ui.md`
 - 테스트 전략: `docs/TESTING_STRATEGY.md`
 - 작업 태스크 목록: `docs/tasks.md`
-
-이 README는 과제 채점자 및 협업 개발자가 로컬 환경에서 곧바로 프로젝트를 실행하고, 테스트를 수행하며, Turborepo 모듈 구조/역할을 이해할 수 있도록 작성되었습니다.
